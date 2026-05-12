@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="todolist.css">
 </head>
-<style src="todolist.css"></style>
 <body>
-    <h1>Lista de Tarefas</h1>
-    <input type="text" id="tarefa">
-    <button onclick="adicionarTarefa()">Adicionar</button>
-    <p>Total de tarefas: <span id="contador">0</span></p>
-    <ul id="lista"></ul>
-    <button onclick="limparTarefas()">Limpar Tarefas</button>
+    <div class="todo-app">
+        <div class="todo-header">
+            <h1>Lista de Tarefas</h1>
+            <p>"Organize suas tarefas :)"</p>
+        </div>
+        <div class="todo-input-group">
+            <input type="text" id="tarefa" placeholder="Digite uma tarefa fofinha...">
+            <button onclick="adicionarTarefa()">Adicionar</button>
+        </div>
+        <ul id="lista" class="todo-list"></ul>
+        <div class="todo-footer">
+            <p>Total de tarefas: <span id="contador">0</span></p>
+            <button onclick="limparTarefas()">Limpar Tudo</button>
+        </div>
+    </div>
     <script src="todolist.js"></script>
 </body>
 </html>

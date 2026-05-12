@@ -14,9 +14,21 @@ function atualizarLista() {
     lista.innerHTML = '';
     tarefas.forEach((tarefa, index) => {
         const li = document.createElement('li');
-        li.textContent = tarefa;
+        li.className = 'todo-item';
+        const itemLeft = document.createElement('div');
+        itemLeft.className = 'todo-item-left';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.onchange = () => {
+            li.classList.toggle('completed');
+        };
+        const label = document.createElement('label');
+        label.textContent = tarefa;
+        itemLeft.appendChild(checkbox);
+        itemLeft.appendChild(label);
+        li.appendChild(itemLeft);
         const excluirBtn = document.createElement('button');
-        excluirBtn.textContent = 'Excluir';
+        excluirBtn.textContent = '🗑️';
         excluirBtn.onclick = () => {
             tarefas.splice(index, 1);
             atualizarLista();
@@ -25,4 +37,8 @@ function atualizarLista() {
         lista.appendChild(li);
     });
     contador.textContent = `Total de tarefas: ${tarefas.length}`;
+}
+function limparTarefas() {
+    tarefas = [];
+    atualizarLista();
 }
