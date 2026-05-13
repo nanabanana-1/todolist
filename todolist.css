@@ -154,6 +154,8 @@ body {
     color: var(--accent-dark);
 }
 
+
+
 .todo-footer {
     margin-top: 1.4rem;
     padding-top: 1.2rem;
@@ -163,6 +165,22 @@ body {
     gap: 1rem;
     color: var(--muted);
     font-size: 0.95rem;
+}
+
+.todo-footer button {
+    padding: 0.9rem 1.3rem;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #9fc8ff, #c8d0ff);
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.todo-footer button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
 }
 
 @media (max-width: 540px) {
