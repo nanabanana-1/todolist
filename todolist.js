@@ -5,6 +5,11 @@ const lista = document.getElementById('lista');
 function salvarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
+document.getElementById('adicionar').addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        adicionarTarefa();
+    }
+});
 function adicionarTarefa() {
     const tarefaInput = document.getElementById('tarefa');
     const tarefa = tarefaInput.value.trim();
