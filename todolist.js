@@ -5,7 +5,8 @@ const lista = document.getElementById('lista');
 function salvarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
-document.getElementById('adicionar').addEventListener("keydown", function(event) {
+const tarefaInput = document.getElementById('tarefa');
+tarefaInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         adicionarTarefa();
     }
@@ -58,3 +59,5 @@ function limparTarefas() {
     tarefas = [];
     atualizarLista();
 }
+
+atualizarLista();
