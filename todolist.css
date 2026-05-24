@@ -1,197 +1,338 @@
-:root {
-    --bg: #e8f4ff;
-    --card: #f7eefc;
-    --accent: #b8d7f7;
-    --accent-dark: #7eaed9;
-    --text: #3d4462;
-    --muted: #7a7f96;
-    --border: #d9d2e6;
-    --shadow: 0 18px 50px rgba(92, 105, 139, 0.12);
-}
-
+/* RESET GLOBAL */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
-    min-height: 100%;
-}
-
+/* ESTILO BODY - SWAG */
 body {
-    margin: 0;
-    font-family: "Inter", "Poppins", sans-serif;
-    background: radial-gradient(circle at top, #f5f8ff 0%, #e8f4ff 45%, #dbeafc 100%);
-    color: var(--text);
-}
-
-.todo-app {
-    max-width: 520px;
-    margin: 4rem auto;
-    padding: 2rem;
-    background: linear-gradient(180deg, #ffffff 0%, #f7eefc 100%);
-    border: 1px solid var(--border);
-    border-radius: 32px;
-    box-shadow: var(--shadow);
-}
-
-.todo-header {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f0f0f;
+    min-height: 100vh;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Fundo com textura sutil e elegante */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* CONTAINER PRINCIPAL - SWAG */
+.todo-app {
+    max-width: 600px;
+    min-width: 280px;
+    width: 100%;
+    background: #1a1a1a;
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(0px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* CABEÇALHO SWAG */
+.todo-header {
     text-align: center;
-    margin-bottom: 1.6rem;
+    margin-bottom: 28px;
 }
 
 .todo-header h1 {
-    margin: 0;
-    font-size: 2.2rem;
-    letter-spacing: -0.04em;
-    color: #243b72;
+    color: #ffffff;
+    font-size: clamp(28px, 6vw, 36px);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ffffff, #a0a0a0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .todo-header p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.97rem;
+    color: #888888;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
 }
 
+/* GRUPO DE INPUT SWAG */
 .todo-input-group {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.85rem;
-    margin-bottom: 1.4rem;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
 }
 
-.todo-input-group input[type="text"] {
-    width: 100%;
-    padding: 1rem 1.1rem;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: #fbfbff;
-    color: var(--text);
-    font-size: 1rem;
+.todo-input-group input {
+    flex: 1;
+    min-width: 180px;
+    padding: 14px 18px;
+    border: 1.5px solid #2a2a2a;
+    border-radius: 18px;
+    font-size: 15px;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    background: #252525;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
+    color: #ffffff;
+    font-weight: 400;
 }
 
-.todo-input-group input[type="text"]:focus {
-    border-color: var(--accent-dark);
-    box-shadow: 0 0 0 5px rgba(184, 215, 247, 0.18);
+.todo-input-group input:focus {
+    border-color: #3a3a3a;
+    background: #2a2a2a;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.todo-input-group input::placeholder {
+    color: #555555;
+    font-weight: 400;
 }
 
 .todo-input-group button {
-    padding: 1rem 1.4rem;
-    border: none;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #9fc8ff, #c8d0ff);
+    background: #2a2a2a;
     color: #ffffff;
-    font-weight: 700;
+    border: 1px solid #3a3a3a;
+    padding: 14px 26px;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Poppins', 'Inter', sans-serif;
     cursor: pointer;
-    transition: transform 0.2s ease, filter 0.2s ease;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
 }
 
 .todo-input-group button:hover {
+    background: #333333;
+    border-color: #4a4a4a;
     transform: translateY(-1px);
-    filter: brightness(1.05);
 }
 
+.todo-input-group button:active {
+    transform: translateY(1px);
+}
+
+/* LISTA DE TAREFAS */
 .todo-list {
     list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.95rem;
+    margin-bottom: 28px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
-.todo-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    transition: transform 0.2s ease;
+/* Scroll personalizado SWAG */
+.todo-list::-webkit-scrollbar {
+    width: 6px;
 }
 
-.todo-item:hover {
-    transform: translateY(-1px);
+.todo-list::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
 }
 
-.todo-item-left {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
+.todo-list::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 10px;
 }
 
-.todo-item input[type="checkbox"] {
-    width: 1.1rem;
-    height: 1.1rem;
-    accent-color: #99c4ff;
+.todo-list::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
 }
 
-.todo-item label {
-    font-size: 1rem;
-    color: var(--text);
-}
-
-.todo-item.completed label {
-    color: var(--muted);
-    text-decoration: line-through;
-}
-
-.todo-item button {
-    background: none;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 1.1rem;
-    padding: 0.4rem;
-}
-
-.todo-item button:hover {
-    color: var(--accent-dark);
-}
-
-
-
-.todo-footer {
-    margin-top: 1.4rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    color: var(--muted);
-    font-size: 0.95rem;
-}
-
-.todo-footer button {
-    padding: 0.9rem 1.3rem;
-    border: none;
+.todo-list li {
+    background: #151515;
+    margin-bottom: 10px;
+    padding: 14px 18px;
     border-radius: 20px;
-    background: linear-gradient(135deg, #9fc8ff, #c8d0ff);
-    color: #ffffff;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     cursor: pointer;
-    transition: transform 0.2s ease, filter 0.2s ease;
+    word-break: break-word;
+    border: 1px solid #252525;
+    transition: all 0.2s ease;
 }
 
-.todo-footer button:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
+.todo-list li:hover {
+    background: #1a1a1a;
+    border-color: #333333;
+    transform: translateX(4px);
 }
 
-@media (max-width: 540px) {
+/* TEXTO DA TAREFA */
+.task-text {
+    flex: 1;
+    font-size: 15px;
+    color: #e0e0e0;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.task-text.completed {
+    text-decoration: line-through;
+    color: #555555;
+    text-decoration-color: #444444;
+}
+
+/* BOTÃO DELETAR SWAG */
+.delete-btn {
+    background: #1f1f1f;
+    color: #888888;
+    border: 1px solid #2a2a2a;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background: #2a1515;
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+/* RODAPÉ SWAG */
+.todo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #252525;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.todo-footer p {
+    color: #888888;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.todo-footer p span {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+#limpar {
+    background: transparent;
+    color: #888888;
+    border: 1px solid #2a2a2a;
+    padding: 8px 18px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+#limpar:hover {
+    background: #1a1a1a;
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+/* Estado vazio */
+.todo-list:empty::before {
+    content: "✧ Nenhuma tarefa ✧";
+    display: block;
+    text-align: center;
+    padding: 28px;
+    background: #151515;
+    border-radius: 20px;
+    color: #555555;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-size: 14px;
+    border: 1px dashed #252525;
+}
+
+/* MEDIA QUERIES PARA CELULAR */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+    
     .todo-app {
-        margin: 2rem 1rem;
-        padding: 1.5rem;
+        padding: 20px;
+        min-width: 260px;
+        border-radius: 24px;
     }
-    .todo-input-group {
-        grid-template-columns: 1fr;
+    
+    .todo-header h1 {
+        font-size: 26px;
     }
+    
+    .todo-input-group input {
+        padding: 12px 16px;
+        font-size: 15px;
+    }
+    
     .todo-input-group button {
-        width: 100%;
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+    
+    .todo-list li {
+        padding: 12px 15px;
+    }
+    
+    .task-text {
+        font-size: 14px;
+    }
+    
+    .delete-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    
+    .todo-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .todo-app {
+        min-width: 240px;
+        padding: 16px;
+    }
+}
+
+/* Para telas grandes */
+@media screen and (min-width: 1200px) {
+    .todo-app {
+        max-width: 650px;
     }
 }
