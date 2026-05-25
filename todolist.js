@@ -1,63 +1,84 @@
-let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
-const contador = document.getElementById('contador');
-const lista = document.getElementById('lista');
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
-function salvarTarefas() {
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
-}
-const tarefaInput = document.getElementById('tarefa');
-tarefaInput.addEventListener("keydown", function(event) {
+const lista = document.getElementById("lista");
+const contador = document.getElementById("contador");
+const tarefaInput = document.getElementById("tarefa");
+
+// Enter adiciona tarefa
+tarefaInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         adicionarTarefa();
     }
 });
-function adicionarTarefa() {
-    const tarefaInput = document.getElementById('tarefa');
-    const tarefa = tarefaInput.value.trim();
-    if (tarefa) {
-        tarefas.push({text: tarefa, completed: false});
-        tarefaInput.value = '';
-        atualizarLista();
-    }
-}
-function atualizarLista() {
-    lista.innerHTML = '';
-    tarefas.forEach((tarefa, index) => {
-        const li = document.createElement('li');
-        li.className = 'todo-item';
-        if (tarefa.completed) {
-            li.classList.add('completed');
-        }
-        const itemLeft = document.createElement('div');
-        itemLeft.className = 'todo-item-left';
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = tarefa.completed;
-        checkbox.onchange = () => {
-            tarefa.completed = checkbox.checked;
-            li.classList.toggle('completed');
-            salvarTarefas();
-        };
-        const label = document.createElement('label');
-        label.textContent = tarefa.text;
-        itemLeft.appendChild(checkbox);
-        itemLeft.appendChild(label);
-        li.appendChild(itemLeft);
-        const excluirBtn = document.createElement('button');
-        excluirBtn.textContent = '🗑️';
-        excluirBtn.onclick = () => {
-            tarefas.splice(index, 1);
-            atualizarLista();
-        };
-        li.appendChild(excluirBtn);
-        lista.appendChild(li);
-    });
-    contador.textContent = tarefas.length;
-    salvarTarefas();
-}
-function limparTarefas() {
-    tarefas = [];
-    atualizarLista();
+
+function salvarTarefas() {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
 
-atualizarLista();
+function adicionarTarefasNaLista() {
+    lista.innerHTML = "";
+
+    tarefas.forEach((tarefa, index) => {
+
+        const li = document.createElement("li");
+        li.className = "todo-item";
+
+        if (tarefa.completed) {
+            li.classList.add("completed");
+        }
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = tarefa.completed;
+
+        checkbox.onchange = () => {
+            tarefas[index].completed = checkbox.checked;
+            atualizar();
+        };
+
+        const label = document.createElement("label");
+        label.textContent = tarefa.text;
+
+        const btn = document.createElement("button");
+        btn.textContent = "🗑️";
+
+        btn.onclick = () => {
+            tarefas.splice(index, 1);
+            atualizar();
+        };
+
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        li.appendChild(btn);
+
+        lista.appendChild(li);
+    });
+
+    contador.textContent = tarefas.length;
+}
+
+function adicionarTarefa() {
+    const texto = tarefaInput.value.trim();
+
+    if (texto === "") return;
+
+    tarefas.push({
+        text: texto,
+        completed: false
+    });
+
+    tarefaInput.value = "";
+    atualizar();
+}
+
+function limparTarefas() {
+    tarefas = [];
+    atualizar();
+}
+
+function atualizar() {
+    salvarTarefas();
+    adicionarTarefasNaLista();
+}
+
+atualizar();
