@@ -7,21 +7,29 @@
 </head>
 
 <body>
-    <div class="todo-app">
-        <div class="todo-header">
-            <h1>Lista de Tarefas</h1>
-            <p>"Organize suas tarefas :)"</p>
-        </div>
-        <div class="todo-input-group">
-            <input type="text" id="tarefa" placeholder="Digite aqui...">
-            <button onclick="adicionarTarefa()">Adicionar</button>
-        </div>
-        <ul id="lista" class="todo-list"></ul>
-        <div class="todo-footer">
-            <p>Total de tarefas: <span id="contador">0</span></p>
-            <button onclick="limparTarefas()" id="limpar">Limpar Tudo</button>
-        </div>
+
+<div class="todo-app">
+
+    <div class="todo-header">
+        <h1>Lista de Tarefas</h1>
+        <p>"Organize suas tarefas :)</p>
     </div>
-    <script src="todolist.js"></script>
+
+    <div class="todo-input-group">
+        <input type="text" id="tarefa" placeholder="Digite aqui...">
+        <button onclick="adicionarTarefa()">Adicionar</button>
+    </div>
+
+    <ul id="lista" class="todo-list"></ul>
+
+    <div class="todo-footer">
+        <p>Total de tarefas: <span id="contador">0</span></p>
+        <button onclick="limparTarefas()">Limpar Tudo</button>
+    </div>
+
+</div>
+
+<script src="todolist.js"></script>
+
 </body>
 </html>
