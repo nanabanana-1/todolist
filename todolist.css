@@ -1,3 +1,6 @@
+body {
+    background: red;
+}
 /* LISTA DE TAREFAS */
 .todo-list li {
     background: #151515;
